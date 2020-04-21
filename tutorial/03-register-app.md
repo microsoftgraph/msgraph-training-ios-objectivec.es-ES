@@ -12,10 +12,14 @@ En este ejercicio, creará una nueva aplicación nativa de Azure AD con el centr
 
     - Establezca **Nombre** como `iOS Objective-C Graph Tutorial`.
     - Establezca **Tipos de cuenta admitidos** en **Cuentas en cualquier directorio de organización y cuentas personales de Microsoft**.
-    - En **URI de redireccionamiento**, cambie la lista desplegable a **cliente público (móvil & escritorio)** y establezca `msauth.YOUR_BUNDLE_ID://auth`el valor `YOUR_BUNDLE_ID` en, reemplazando con el identificador de la agrupación de la aplicación.
+    - Deje **URI de redireccionamiento** vacía.
 
     ![Captura de pantalla de la página registrar una aplicación](./images/aad-register-an-app.png)
 
 1. Seleccione **registrar**. En la página Tutorial de los **gráficos de iOS Objective-C** , copie el valor del identificador de la **aplicación (cliente)** y guárdelo, lo necesitará en el paso siguiente.
 
     ![Captura de pantalla del identificador de la aplicación del nuevo registro de la aplicación](./images/aad-application-id.png)
+
+1. Seleccione **Autenticación** en **Administrar**. Seleccione **Agregar una plataforma**y, a continuación, **iOS/MacOS**.
+
+1. Escriba el identificador de paquete de la aplicación y seleccione **configurar**y, después, haga clic en **listo**.

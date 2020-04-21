@@ -115,7 +115,7 @@ En esta sección, ampliará la `GraphManager` clase para agregar una función pa
     @end
     ```
 
-Ahora puede ejecutar la aplicación, iniciar sesión y puntear en el elemento de navegación **calendario** del menú. Debería ver un volcado JSON de los eventos en la aplicación.
+1. Ejecute la aplicación, inicie sesión y puntee en el elemento de navegación **calendario** del menú. Debería ver un volcado JSON de los eventos en la aplicación.
 
 ## <a name="display-the-results"></a>Mostrar los resultados
 
@@ -131,96 +131,18 @@ Ahora puede reemplazar el volcado de JSON con algo para mostrar los resultados d
 
 1. Abra **GraphManager. m**. Reemplace la `completionBlock(data, nil);` línea en la `getEventsWithCompletionBlock` función por el siguiente código.
 
-    ```objc
-    NSError* graphError;
-
-    // Deserialize to an events collection
-    MSCollection* eventsCollection = [[MSCollection alloc] initWithData:data error:&graphError];
-    if (graphError) {
-        completionBlock(nil, graphError);
-        return;
-    }
-
-    // Create an array to return
-    NSMutableArray* eventsArray = [[NSMutableArray alloc]
-                                initWithCapacity:eventsCollection.value.count];
-
-    for (id event in eventsCollection.value) {
-        // Deserialize the event and add to the array
-        MSGraphEvent* graphEvent = [[MSGraphEvent alloc] initWithDictionary:event];
-        [eventsArray addObject:graphEvent];
-    }
-
-    completionBlock(eventsArray, nil);
-    ```
+    :::code language="objc" source="../demo/GraphTutorial/GraphTutorial/GraphManager.m" id="GetEventsSnippet" highlight="24-43":::
 
 ### <a name="update-calendarviewcontroller"></a>Actualizar CalendarViewController
 
 1. Cree un nuevo archivo de **clase táctil de cacao** en el proyecto `CalendarTableViewCell` **GraphTutorial** denominado. Elija **UITableViewCell** en el campo **subclase de** .
 1. Abra **CalendarTableViewCell. h** y reemplace su contenido por el código siguiente.
 
-    ```objc
-    #import <UIKit/UIKit.h>
-
-    NS_ASSUME_NONNULL_BEGIN
-
-    @interface CalendarTableViewCell : UITableViewCell
-
-    @property (nonatomic) NSString* subject;
-    @property (nonatomic) NSString* organizer;
-    @property (nonatomic) NSString* duration;
-
-    @end
-
-    NS_ASSUME_NONNULL_END
-    ```
+    :::code language="objc" source="../demo/GraphTutorial/GraphTutorial/CalendarTableViewCell.h" id="CalendarTableCellSnippet":::
 
 1. Abra **CalendarTableViewCell. m** y reemplace su contenido por el código siguiente.
 
-    ```objc
-    #import "CalendarTableViewCell.h"
-
-    @interface CalendarTableViewCell()
-
-    @property (nonatomic) IBOutlet UILabel *subjectLabel;
-    @property (nonatomic) IBOutlet UILabel *organizerLabel;
-    @property (nonatomic) IBOutlet UILabel *durationLabel;
-
-    @end
-
-    @implementation CalendarTableViewCell
-
-    - (void)awakeFromNib {
-        [super awakeFromNib];
-        // Initialization code
-    }
-
-    - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-        [super setSelected:selected animated:animated];
-
-        // Configure the view for the selected state
-    }
-
-    - (void) setSubject:(NSString *)subject {
-        _subject = subject;
-        self.subjectLabel.text = subject;
-        [self.subjectLabel sizeToFit];
-    }
-
-    - (void) setOrganizer:(NSString *)organizer {
-        _organizer = organizer;
-        self.organizerLabel.text = organizer;
-        [self.organizerLabel sizeToFit];
-    }
-
-    - (void) setDuration:(NSString *)duration {
-        _duration = duration;
-        self.durationLabel.text = duration;
-        [self.durationLabel sizeToFit];
-    }
-
-    @end
-    ```
+    :::code language="objc" source="../demo/GraphTutorial/GraphTutorial/CalendarTableViewCell.m" id="CalendarTableCellSnippet":::
 
 1. Abra **Main. Storyboard** y busque la **escena del calendario**. Seleccione la **vista** de la **escena del calendario** y elimínela.
 
@@ -231,8 +153,25 @@ Ahora puede reemplazar el volcado de JSON con algo para mostrar los resultados d
 1. Use la **biblioteca** para agregar tres **etiquetas** a la celda del prototipo.
 1. Seleccione la celda prototype y, a continuación, seleccione el **Inspector de identidad**. Cambie la **clase** a **CalendarTableViewCell**.
 1. Seleccione el **Inspector de atributos** y establezca **identificador** en `EventCell`.
-1. En el menú **Editor** , seleccione **resolver problemas de diseño automático**y, a continuación, seleccione **Agregar restricciones que faltan** debajo **de todas las vistas en el controlador de vista de bienvenida**.
 1. Con la **EventCell** seleccionada, seleccione el **Inspector de conexiones** y `durationLabel`Conéctese `organizerLabel`, `subjectLabel` y a las etiquetas que haya agregado a la celda en el guión gráfico.
+1. Establezca las propiedades y restricciones de las tres etiquetas como se indica a continuación.
+
+    - **Etiqueta de asunto**
+        - Agregar restricción: espacio inicial para la vista de contenido margen inicial, valor: 0
+        - Agregar restricción: espacio final para la vista de contenido margen final, valor: 0
+        - Agregar restricción: espacio superior para la vista de contenido margen superior, valor: 0
+    - **Etiqueta del organizador**
+        - Fuente: sistema 12,0
+        - Agregar restricción: espacio inicial para la vista de contenido margen inicial, valor: 0
+        - Agregar restricción: espacio final para la vista de contenido margen final, valor: 0
+        - Agregar restricción: espacio superior a etiqueta de asunto en la parte inferior, valor: estándar
+    - **Etiqueta de duración**
+        - Fuente: sistema 12,0
+        - Color: color gris oscuro
+        - Agregar restricción: espacio inicial para la vista de contenido margen inicial, valor: 0
+        - Agregar restricción: espacio final para la vista de contenido margen final, valor: 0
+        - Agregar restricción: espacio superior para etiqueta de Organizer en la parte inferior, valor: estándar
+        - Agregar restricción: espacio inferior para la vista de contenido margen inferior, valor: 8
 
     ![Captura de pantalla del diseño de celda de prototipo](./images/prototype-cell-layout.png)
 
@@ -245,71 +184,7 @@ Ahora puede reemplazar el volcado de JSON con algo para mostrar los resultados d
 
 1. Abra **CalendarViewController. m** y reemplace su contenido por el código siguiente.
 
-    ```objc
-    #import "WelcomeViewController.h"
-    #import "SpinnerViewController.h"
-    #import "AuthenticationManager.h"
-    #import "GraphManager.h"
-    #import <MSGraphClientModels/MSGraphClientModels.h>
-
-    @interface WelcomeViewController ()
-
-    @property SpinnerViewController* spinner;
-
-    @end
-
-    @implementation WelcomeViewController
-
-    - (void)viewDidLoad {
-        [super viewDidLoad];
-        // Do any additional setup after loading the view.
-
-        self.spinner = [SpinnerViewController alloc];
-        [self.spinner startWithContainer:self];
-
-        self.userProfilePhoto.image = [UIImage imageNamed:@"DefaultUserPhoto"];
-
-        [GraphManager.instance
-         getMeWithCompletionBlock:^(MSGraphUser * _Nullable user, NSError * _Nullable error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.spinner stop];
-
-                if (error) {
-                    // Show the error
-                    UIAlertController* alert = [UIAlertController
-                                                alertControllerWithTitle:@"Error getting user profile"
-                                                message:error.debugDescription
-                                                preferredStyle:UIAlertControllerStyleAlert];
-
-                    UIAlertAction* okButton = [UIAlertAction
-                                               actionWithTitle:@"OK"
-                                               style:UIAlertActionStyleDefault
-                                               handler:nil];
-
-                    [alert addAction:okButton];
-                    [self presentViewController:alert animated:true completion:nil];
-                    return;
-                }
-
-                // Set display name
-                self.userDisplayName.text = user.displayName ? : @"Mysterious Stranger";
-                [self.userDisplayName sizeToFit];
-
-                // AAD users have email in the mail attribute
-                // Personal accounts have email in the userPrincipalName attribute
-                self.userEmail.text = user.mail ? : user.userPrincipalName;
-                [self.userEmail sizeToFit];
-            });
-         }];
-    }
-
-    - (IBAction)signOut {
-        [AuthenticationManager.instance signOut];
-        [self performSegueWithIdentifier: @"userSignedOut" sender: nil];
-    }
-
-    @end
-    ```
+    :::code language="objc" source="../demo/GraphTutorial/GraphTutorial/CalendarViewController.m" id="CalendarViewSnippet":::
 
 1. Ejecute la aplicación, inicie sesión y pulse la pestaña **calendario** . Debe ver la lista de eventos.
 

@@ -8,11 +8,11 @@ En este laboratorio, creará una aplicación de iOS escrita en Objective-C media
 
 - [tutorial de iOS: C de Microsoft Graph](https://docs.microsoft.com/graph/tutorials/ios-objectivec)
 
-## <a name="demos"></a>Demostraciones
+## <a name="completed-sample"></a>Ejemplo completado
 
-- [01-Create-App](demos/01-create-app): se completó la [creación de una aplicación de Objective-C de iOS](https://docs.microsoft.com/graph/tutorials/ios-objectivec?tutorial-step=1)
-- [02-Add-AAD-auth](demos/02-add-aad-auth): [adición de autenticación de Azure ad](https://docs.microsoft.com/graph/tutorials/ios-objectivec?tutorial-step=3) completada
-- [03-Add-MSGraph](demos/03-add-msgraph): [obtener datos de calendario](https://docs.microsoft.com/graph/tutorials/ios-objectivec?tutorial-step=4) completados
+Si solo quiere el ejemplo completado que se genera siguiendo este laboratorio, puede encontrarlo aquí.
+
+- [Proyecto completado](demo)
 
 ## <a name="watch-the-module"></a>Ver el módulo
 
@@ -29,10 +29,11 @@ Este módulo se ha registrado y está disponible en el canal de YouTube de desar
 
 | Versión |        Fecha        |                                                               Comentarios                                                               |
 | ------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
+| 1.9     | 7 de abril de 2020      | Se ha actualizado el tutorial con la última versión de Xcode, MSAL, etc.                                                                                     |
 | 1.8     | 23 de agosto de 2019    | Formación revisada para la incorporación a docs.microsoft.com                                                                                |
 | 1.7     | 18 de junio de 2019      | Se actualizó el archivo Léame en grabación de screencast actualizada                                                                                     |
 | 1.6     | 12 de mayo de 2019       | actualización del contenido de 2019Q4                                                                                                               |
-| 1.5     | 12 de febrero de 2019  | actualización del contenido de 2019Q3                                                                                                               |
+| 1,5     | 12 de febrero de 2019  | actualización del contenido de 2019Q3                                                                                                               |
 | 1.4     | 7 de noviembre de 2018   | actualización del contenido de 2019Q2; Se ha reemplazado el proceso para usar Cocoapods en lugar de Carthage para incluir el SDK de MSAL para iOS. laboratorio actualizado para XCode 10,1 |
 | 1.3     | 7 de septiembre de 2018  | actualización del contenido de 2019Q1                                                                                                               |
 | 1.2     | 28 de junio de 2018      | Se ha agregado una screencast.                                                                                                                    |

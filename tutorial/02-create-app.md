@@ -30,7 +30,7 @@ Antes de continuar, instale algunas dependencias adicionales que usará más ade
 1. Abra Podfile y agregue las siguientes líneas justo después de la `use_frameworks!` línea.
 
     ```Ruby
-    pod 'MSAL', '~> 1.0.2'
+    pod 'MSAL', '~> 1.1.1'
     pod 'MSGraphClientSDK', ' ~> 1.0.0'
     pod 'MSGraphClientModels', '~> 1.3.0'
     ```
@@ -97,12 +97,14 @@ En esta sección, creará las vistas de la aplicación: una página de inicio de
 
     ![Captura de pantalla del campo título en el inspector de atributos de Xcode](./images/set-button-title.png)
 
+1. Con el botón seleccionado, seleccione el botón **alinear** en la parte inferior del guión gráfico. Seleccione el **contenedor horizontalmente en el contenedor** y **verticalmente en restricciones de contenedor** , deje sus valores como 0 y, a continuación, seleccione **Agregar 2 restricciones**.
+
+    ![Una captura de pantalla de la configuración de restricciones de alineación en Xcode](./images/add-alignment-constraints.png)
+
 1. Seleccione el **controlador de vista de inicio de sesión**y, a continuación, seleccione el **Inspector de conexiones**.
 1. En **acciones recibidas**, arrastre el círculo no rellenado junto a **iniciar sesión** en el botón. Seleccione **retocar dentro** del menú emergente.
 
     ![Una captura de pantalla de cómo arrastrar la acción de inicio de sesión al botón en Xcode](./images/connect-sign-in-button.png)
-
-1. En el menú **Editor** , seleccione **resolver problemas de diseño automático**y, a continuación, seleccione **Agregar restricciones que faltan** debajo **de todas las vistas en el controlador de vista de inicio de sesión**.
 
 ### <a name="create-tab-bar"></a>Crear barra de pestañas
 
@@ -175,18 +177,45 @@ En esta sección, creará las vistas de la aplicación: una página de inicio de
     - Dos **etiquetas**
     - Un **botón**
 
-1. Seleccione la vista de imagen y, a continuación, seleccione el **Inspector de tamaño**.
-1. Establezca el **ancho** y el **alto** en 196.
-1. Seleccione la segunda etiqueta y, a continuación, seleccione el **Inspector de atributos**.
-1. Cambie el **color** a **color gris oscuro**y cambie la **fuente** a **sistema 12,0**.
-1. Seleccione el botón y, a continuación, seleccione el **Inspector de atributos**.
-1. Cambie el **título** a `Sign Out`.
 1. Mediante el **Inspector de conexiones**, realice las siguientes conexiones.
 
     - Vincule el tomacorriente **userDisplayName** a la primera etiqueta.
     - Vincule la toma de **userEmail** a la segunda etiqueta.
     - Vincule el tomacorriente **userProfilePhoto** a la vista de imagen.
     - Vincular la acción de **signOut** recibido a la **pantalla táctil**del botón en.
+
+1. Seleccione la vista de imagen y, a continuación, seleccione el **Inspector de tamaño**.
+1. Establezca el **ancho** y el **alto** en 196.
+1. Use el botón **alinear** para agregar **horizontalmente en la restricción de contenedor** con un valor de 0.
+1. Use el botón **Agregar nuevas restricciones** (situado junto al botón **alinear** ) para agregar las siguientes restricciones:
+
+    - Alinear en la parte superior a: área segura, valor: 0
+    - Espacio inferior para: nombre para mostrar del usuario, valor: estándar
+    - Height, Value: 196
+    - Width, Value: 196
+
+    ![Una captura de pantalla de la configuración de restricciones nuevas en Xcode](./images/add-new-constraints.png)
+
+1. Seleccione la primera etiqueta y, a continuación, use el botón **alinear** para agregar la restricción **de contenedor horizontalmente en** el valor 0.
+1. Use el botón **Agregar restricciones nuevas** para agregar las siguientes restricciones:
+
+    - Espacio principal para: foto de Perfil de usuario, valor: estándar
+    - Espacio inferior para: correo electrónico del usuario, valor: estándar
+
+1. Seleccione la segunda etiqueta y, a continuación, seleccione el **Inspector de atributos**.
+1. Cambie el **color** a **color gris oscuro**y cambie la **fuente** a **sistema 12,0**.
+1. Use el botón **alinear** para agregar **horizontalmente en la restricción de contenedor** con un valor de 0.
+1. Use el botón **Agregar restricciones nuevas** para agregar las siguientes restricciones:
+
+    - Espacio superior para: nombre para mostrar del usuario, valor: estándar
+    - Espacio inferior para: cerrar sesión, valor: 14
+
+1. Seleccione el botón y, a continuación, seleccione el **Inspector de atributos**.
+1. Cambie el **título** a `Sign Out`.
+1. Use el botón **alinear** para agregar **horizontalmente en la restricción de contenedor** con un valor de 0.
+1. Use el botón **Agregar restricciones nuevas** para agregar las siguientes restricciones:
+
+    - Espacio superior para: correo electrónico del usuario, valor: 14
 
 1. Seleccione el elemento de la barra de pestañas en la parte inferior de la escena y, a continuación, seleccione el **Inspector de atributos**. Cambie el **título** a `Me`.
 1. En el menú **Editor** , seleccione **resolver problemas de diseño automático**y, a continuación, seleccione **Agregar restricciones que faltan** debajo **de todas las vistas en el controlador de vista de bienvenida**.
@@ -231,7 +260,7 @@ La escena de bienvenida debe tener una apariencia similar a la siguiente una vez
 1. Con la **biblioteca**, agregue una **vista de texto** a la **escena del elemento 2**.
 1. Seleccione la vista de texto que acaba de agregar. En el **Editor**, elija **incrustar en**y, a continuación, **vista de desplazamiento**.
 1. Mediante el **Inspector de conexiones**, conecte el tomacorriente **calendarJSON** a la vista de texto.
-1. 1. Seleccione el elemento de la barra de pestañas en la parte inferior de la escena y, a continuación, seleccione el **Inspector de atributos**. Cambie el **título** a `Calendar`.
+1. Seleccione el elemento de la barra de pestañas en la parte inferior de la escena y, a continuación, seleccione el **Inspector de atributos**. Cambie el **título** a `Calendar`.
 1. En el menú **Editor** , seleccione **resolver problemas de diseño automático**y, a continuación, seleccione **Agregar restricciones que faltan** debajo **de todas las vistas en el controlador de vista de bienvenida**.
 
 La escena del calendario debe tener un aspecto similar a este, una vez que haya terminado.
@@ -250,46 +279,7 @@ La escena del calendario debe tener un aspecto similar a este, una vez que haya 
 
 1. Abra **SpinnerViewController. m** y reemplace su contenido por el código siguiente.
 
-    ```objc
-    #import "SpinnerViewController.h"
-
-    @interface SpinnerViewController ()
-    @property (nonatomic) UIActivityIndicatorView* spinner;
-    @end
-
-    @implementation SpinnerViewController
-
-    - (void)viewDidLoad {
-        [super viewDidLoad];
-
-        _spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
-                    UIActivityIndicatorViewStyleWhiteLarge];
-
-        self.view.backgroundColor = [UIColor colorWithWhite:0 alpha:0.7];
-        [self.view addSubview:_spinner];
-
-        _spinner.translatesAutoresizingMaskIntoConstraints = false;
-        [_spinner startAnimating];
-
-        [_spinner.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = true;
-        [_spinner.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = true;
-    }
-
-    - (void) startWithContainer:(UIViewController *)container {
-        [container addChildViewController:self];
-        self.view.frame = container.view.frame;
-        [container.view addSubview:self.view];
-        [self didMoveToParentViewController:container];
-    }
-
-    - (void) stop {
-        [self willMoveToParentViewController:nil];
-        [self.view removeFromSuperview];
-        [self removeFromParentViewController];
-    }
-
-    @end
-    ```
+    :::code language="objc" source="../demo/GraphTutorial/GraphTutorial/SpinnerViewController.m" id="SpinnerViewSnippet":::
 
 ## <a name="test-the-app"></a>Probar la aplicación
 
