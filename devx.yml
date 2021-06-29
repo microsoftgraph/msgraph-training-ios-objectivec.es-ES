@@ -1,0 +1,15 @@
+### YamlMime:Yaml
+ms.openlocfilehash: dd98afee8ae90639c7e971e39cd6312038c36b97
+ms.sourcegitcommit: 5b87a65af2d25898ec4d1c0d36be3b3d7805e317
+ms.translationtype: MT
+ms.contentlocale: es-ES
+ms.lasthandoff: 06/29/2021
+ms.locfileid: "53195264"
+languages:
+- objective-c
+extensions:
+  services:
+  - Outlook
+  - Office 365
+  - Microsoft identity platform
+dependencyFile: /demo/GraphTutorial/Podfile
